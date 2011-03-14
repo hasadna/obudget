@@ -14,7 +14,10 @@ class BudgetAPICaller extends JsonpRequestBuilder {
 	static Integer mNumPending = 0;
 
 	private void setLoading(boolean loading) {
-		RootPanel.get("loading-indicator").setVisible(loading);
+		RootPanel x = RootPanel.get("loading-indicator");
+		if ( x != null ) {
+			x.setVisible(loading);
+		}
 	}
 	
 	private void increasePending() {
