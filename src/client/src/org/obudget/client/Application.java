@@ -106,6 +106,7 @@ class Application implements ValueChangeHandler<String> {
 		
 		mSearchBox = new SuggestBox(new BudgetSuggestionOracle());
 		mSearchBox.setWidth("300px");
+		mSearchBox.setAutoSelectEnabled(false);
 		mSearchBox.addSelectionHandler( new SelectionHandler<Suggestion>() {
 			@Override
 			public void onSelection(SelectionEvent<Suggestion> event) {
