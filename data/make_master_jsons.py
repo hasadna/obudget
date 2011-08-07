@@ -27,8 +27,8 @@ for f in filenames:
         try:
             rec = json.loads(line)
             if rec.get('title') == None: continue
-            if rec['code'].startswith('0000'):
-                continue
+            #if rec['code'].startswith('0000'):
+            #    continue
             key = "%s|%10s" % (rec['year'],rec['code'])
             keys.add(key)
             alldata.setdefault(key,{}).update(rec)

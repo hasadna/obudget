@@ -53,8 +53,6 @@ def download_one(year,code):
     except Exception,e:
         print e
         
-        time.sleep(60)
-    
         params = { 
             'APPNAME':'budget',
             'PRGNAME':'doc1',
@@ -94,6 +92,9 @@ def download_one(year,code):
 
         
         conn.close()
+
+        time.sleep(60)
+    
     return ret
 
 def download_all():
@@ -119,7 +120,7 @@ def download_all():
                         pass
 
     ts = []
-    for year in range(1996,2013):
+    for year in range(2010,2013):
         t = Downloader(year)
         t.start()
         ts.append(t)
