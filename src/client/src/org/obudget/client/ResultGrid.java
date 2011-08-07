@@ -107,14 +107,14 @@ class ResultGrid extends Composite {
 			mGrid.setText(r+1, 1, formatNumber( bl.getOriginal(BudgetLine.ALLOCATED, net) ) );
 			mGrid.setText(r+1, 2, formatNumber( bl.getOriginal(BudgetLine.REVISED, net) ) );
 			mGrid.setText(r+1, 3, formatNumber( bl.getOriginal(BudgetLine.USED, net) ) );
-			mGrid.getCellFormatter().addStyleName(r+1, 0, "resultgrid-title");
-			mGrid.getCellFormatter().addStyleName(r+1, 1, "resultgrid-data");
-			mGrid.getCellFormatter().addStyleName(r+1, 2, "resultgrid-data");
-			mGrid.getCellFormatter().addStyleName(r+1, 3, "resultgrid-data");
+			mGrid.getCellFormatter().setStyleName(r+1, 0, "resultgrid-title");
+			mGrid.getCellFormatter().setStyleName(r+1, 1, "resultgrid-data");
+			mGrid.getCellFormatter().setStyleName(r+1, 2, "resultgrid-data");
+			mGrid.getCellFormatter().setStyleName(r+1, 3, "resultgrid-data");
 			if ( "0000".equals(bl.getCode()) ) {
-				mGrid.getRowFormatter().addStyleName(r+1, "resultgrid-income-data-row");
+				mGrid.getRowFormatter().setStyleName(r+1, "resultgrid-income-data-row");
 			} else {
-				mGrid.getRowFormatter().addStyleName(r+1, "resultgrid-data-row");				
+				mGrid.getRowFormatter().setStyleName(r+1, "resultgrid-data-row");				
 			}
 		}
 
