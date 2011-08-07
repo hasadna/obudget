@@ -2,8 +2,6 @@ package org.obudget.client;
 
 import java.util.LinkedList;
 
-import org.apache.catalina.startup.Embedded;
-
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ChangeEvent;
@@ -11,17 +9,13 @@ import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DecoratedPopupPanel;
-import com.google.gwt.user.client.ui.DecoratedTabPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.RadioButton;
-import com.google.gwt.user.client.ui.TabBar;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.ToggleButton;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -169,7 +163,12 @@ class PieCharter extends Composite {
 	}
 	
 	public void handleData( LinkedList<BudgetLine> list ) {
-		mList = list;
+		mList = new LinkedList<BudgetLine>();
+		for ( BudgetLine bl : list ) {
+			if ( !bl.getCode().equals("0000") ) {
+				mList.add(bl);
+			}
+		}
 		redrawChart();
 	}
 	
