@@ -266,6 +266,11 @@ a:hover{
   border-collapse:collapse;
 }
 
+.resultgrid-income-data-row {
+  padding-right:2px;
+  background: #bbf;
+}
+
 .resultgrid-data {
   text-align:center;
   white-space:nowrap;

@@ -111,7 +111,11 @@ class ResultGrid extends Composite {
 			mGrid.getCellFormatter().addStyleName(r+1, 1, "resultgrid-data");
 			mGrid.getCellFormatter().addStyleName(r+1, 2, "resultgrid-data");
 			mGrid.getCellFormatter().addStyleName(r+1, 3, "resultgrid-data");
-			mGrid.getRowFormatter().addStyleName(r+1, "resultgrid-data-row");
+			if ( "0000".equals(bl.getCode()) ) {
+				mGrid.getRowFormatter().addStyleName(r+1, "resultgrid-income-data-row");
+			} else {
+				mGrid.getRowFormatter().addStyleName(r+1, "resultgrid-data-row");				
+			}
 		}
 
 		mGrid.getRowFormatter().addStyleName(0, "resultgrid-header-row");
