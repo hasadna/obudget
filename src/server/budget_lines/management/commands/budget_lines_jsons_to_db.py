@@ -7,14 +7,14 @@ import json
 
 class Command(BaseCommand):
 
-    args = '[-u] <jsons-file> <jsons-file> ...'
+    args = '[update] <jsons-file> <jsons-file> ...'
     help = 'Transfers a sorted jsons budget data files into the DB'
 
     def handle(self, *args, **options):
 
         print 'Loading raw rows'
         k = 0
-        update = args[0] == '-u'
+        update = args[0] == 'update'
         if update:
             args = args[1:]
         
