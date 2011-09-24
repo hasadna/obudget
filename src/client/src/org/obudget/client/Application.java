@@ -348,7 +348,7 @@ class Application implements ValueChangeHandler<String> {
 					mYearSelection.setWidth("55px");
 				}
 
-				mTimeLineCharter.handleData(mHistoricBudgetLines);				
+				mTimeLineCharter.handleData(mHistoricBudgetLines, mYear);				
 			}
 		});
 		

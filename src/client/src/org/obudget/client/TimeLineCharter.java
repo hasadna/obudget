@@ -11,11 +11,9 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.LayoutPanel;
-import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.ToggleButton;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment.HorizontalAlignmentConstant;
 import com.google.gwt.visualization.client.DataTable;
 import com.google.gwt.visualization.client.LegendPosition;
 import com.google.gwt.visualization.client.AbstractDataTable.ColumnType;
@@ -41,6 +39,7 @@ class TimeLineCharter extends Composite {
 	private HTML mSimplePopupContents;
 	private Integer mWidth;
 	private Integer mHeight;
+	private Integer mYear = null;
 
 	public TimeLineCharter( Application app, boolean embedded, Integer width, Integer height ) {
 		mApp = app;
@@ -99,6 +98,7 @@ class TimeLineCharter extends Composite {
 		mDataTypePanel = new HorizontalPanel();
 		mChartTitle = new Label("");
 		mChartTitle.setWidth((mWidth-160)+"px");
+		mChartTitle.setStyleName("chart-title");
 		mDataTypePanel.add(mChartTitle);
 		mDataTypePanel.add(mInfButton);
 		mDataTypePanel.add(mOrigButton);
@@ -178,7 +178,7 @@ class TimeLineCharter extends Composite {
 		mEmbedded = embedded;
 		HTML embedLabel = null;
 		if ( mEmbedded ) {
-			embedLabel = new HTML("מ<a target='_blank' href='http://"+Window.Location.getHost()+"'>אתר התקציב הפתוח</a>");
+			embedLabel = new HTML("מ<a target='_blank' href='http://"+Window.Location.getHost()+"/"+Window.Location.getHash()+"'>אתר התקציב הפתוח</a>");
 			
 		} else {
 			embedLabel = new HTML("<span class='embed-link'>שיבוץ התרשים באתר אחר (embed)<span>");
@@ -205,12 +205,13 @@ class TimeLineCharter extends Composite {
 		initWidget(mPanel);
 	}
 	
-	public void handleData( LinkedList<BudgetLine> list ) {
+	public void handleData( LinkedList<BudgetLine> list, Integer year ) {
 		if ( list.size() == 0 ) {
 			mChartPanel.clear();
 			return; 
 		}
 		mList = list;
+		mYear  = year;
 		redrawChart();
 	}
 	
@@ -261,8 +262,10 @@ class TimeLineCharter extends Composite {
 	    if ( grossAllocated ) { data.addColumn(ColumnType.NUMBER, StringUtils.compStr( "הקצאת תקציב - ברוטו" ) ); }
 
 	    if ( mEmbedded ) {
-	    	if ( mList.size() > 0 ) {
-	    		mChartTitle.setText( StringUtils.compStr( mList.getLast().getCode() + " - " + mList.getLast().getTitle() ) );
+		    for ( int i = 0 ; i < mList.size() ; i ++ ) {
+		    	if ( mList.get(i).getYear().equals(mYear) ) {
+		    		mChartTitle.setText( StringUtils.compStr( mList.get(i).getCode() + " - " + mList.get(i).getTitle() ) );
+		    	}
 	    	}
 	    }
 	    
