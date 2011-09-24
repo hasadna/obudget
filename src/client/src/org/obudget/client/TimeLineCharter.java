@@ -264,7 +264,8 @@ class TimeLineCharter extends Composite {
 	    if ( mEmbedded ) {
 		    for ( int i = 0 ; i < mList.size() ; i ++ ) {
 		    	if ( mList.get(i).getYear().equals(mYear) ) {
-		    		mChartTitle.setText( StringUtils.compStr( mList.get(i).getCode() + " - " + mList.get(i).getTitle() ) );
+		    		mChartTitle.setText( StringUtils.compStr( mList.get(i).getTitle() ) );
+		    		mChartTitle.setTitle( "מספר סעיף: "+mList.get(i).getCode() );
 		    	}
 	    	}
 	    }
