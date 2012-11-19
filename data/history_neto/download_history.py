@@ -8,7 +8,7 @@ import json
 baseurl = 'http://www.ag.mof.gov.il'
 xls = re.compile('[^"\']+xls')
 
-for fn in ['history0.html','history1.html']:
+for fn in []:#'history0.html','history1.html']:
     data = file(fn).read()
     xlss = xls.findall(data)
     for x in xlss:
@@ -19,7 +19,7 @@ for fn in ['history0.html','history1.html']:
 
 out = file('history.json','w')
 
-for y in range(1992,2010):
+for y in range(1992,2012):
     fn = 'history%d.csv' % y
     r = csv.reader(file(fn))
     for l in r:
