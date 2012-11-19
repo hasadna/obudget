@@ -60,6 +60,7 @@ for y in range(1992,2010):
 #                revised = -revised
 #            if used != None:
 #                used = -used
+        if used == None and revised == None and allocated == None: continue
         j = { 'year':y, 'code' : code, 'title' : title, 'net_allocated' : allocated, 'net_revised' : revised, 'net_used' : used }
         out.write(json.dumps(j)+'\n')
         

@@ -44,7 +44,7 @@ for year in range(1992,2013):
                  'code' : '00',
                  }
     for key in keys:
-        if '%s|%10s' % (year,"0000") in keys:
+        if '%s|%10s' % (year,"0000") in key:
             continue
         if key.startswith(totalkey):
             rec = alldata[key]

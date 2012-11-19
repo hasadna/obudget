@@ -93,7 +93,7 @@ def download_one(year,code):
         
         conn.close()
 
-        time.sleep(60)
+        time.sleep(1)
     
     return ret
 
