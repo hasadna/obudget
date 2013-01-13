@@ -3,18 +3,18 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
-	<classpathentry kind="lib" path="/home/adam/Projects/gwt-visualization-1.1.0/gwt-visualization-1.1.0/gwt-visualization.jar"/>
-	<classpathentry kind="lib" path="gwt-search.jar"/>
-	<classpathentry kind="lib" path="gwt-log-3.0.1.jar"/>
-	<classpathentry kind="lib" path="/home/adam/Projects/eclipse/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.2.1.1_2.1.1.v201012170127/gwt-2.1.1/gwt-user.jar">
+	<classpathentry kind="lib" path="gwt-search-1.1.1.jar"/>
+	<classpathentry kind="lib" path="gwt-log-3.2.0.jar"/>
+	<classpathentry kind="lib" path="C:/usr/local/gwt/gwt-2.5.0/gwt-user.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="file:/home/adam/Projects/eclipse/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.2.1.1_2.1.1.v201012170127/gwt-2.1.1/doc/javadoc/"/>
+			<attribute name="javadoc_location" value="file:/C:/usr/local/gwt/gwt-2.5.0/doc/javadoc/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/adam/Projects/eclipse/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.2.1.1_2.1.1.v201012170127/gwt-2.1.1/gwt-dev.jar">
+	<classpathentry kind="lib" path="C:/usr/local/gwt/gwt-2.5.0/gwt-dev.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="file:/home/adam/Projects/eclipse/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.2.1.1_2.1.1.v201012170127/gwt-2.1.1/doc/javadoc/"/>
+			<attribute name="javadoc_location" value="file:/C:/usr/local/gwt/gwt-2.5.0/doc/javadoc/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="gwt-visualization.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

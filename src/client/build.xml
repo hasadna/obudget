@@ -4,15 +4,17 @@
   <property name="gwt.args" value="-style PRETTY" />
 
   <!-- Configure path to GWT SDK -->
-  <property name="gwt.sdk" location="/home/adam/Projects/gwt/gwt-2.1.0" />
+  <property name="gwt.sdk" location="/usr/local/gwt/gwt-2.5.0" />
 
   <path id="project.class.path">
     <pathelement location="war/WEB-INF/classes"/>
     <pathelement location="${gwt.sdk}/gwt-user.jar"/>
     <fileset dir="${gwt.sdk}" includes="gwt-dev*.jar"/>
+  	<fileset dir="${gwt.sdk}" includes="validation-api*.jar"/>
     <!-- Add any additional non-server libs (such as JUnit) -->
-    <fileset dir="." includes="gwt-vis*.jar"/>
-  	<fileset dir="." includes="gwt-search.jar"/>
+    <fileset dir="." includes="gwt-visualization.jar"/>
+  	<fileset dir="." includes="gwt-search-1.1.1.jar"/>
+  	<fileset dir="." includes="gwt-log-3.2.0.jar"/>
     <fileset dir="war/WEB-INF/lib" includes="**/*.jar"/>
   </path>
 
@@ -43,8 +45,6 @@
       </classpath>
       <!-- add jvmarg -Xss16M or similar if you see a StackOverflowError -->
       <jvmarg value="-Xmx256M"/>
-      <!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
-      <arg line="${gwt.args}"/>
       <arg value="org.obudget.obudget"/>
     </java>
   </target>
