@@ -56,7 +56,7 @@ class PieCharter extends Composite {
 		mWidth = width;
 		mTabPanel.setHeight((mHeight-20)+"px");
 		mTabPanel.setWidth((mWidth-5)+"px");
-		mTabPanel.setStylePrimaryName("obudget-piechart");	
+		mTabPanel.setStylePrimaryName("obudget-piechart");
 		
 		mPanel = new VerticalPanel();
 		mPanel.add(mTabPanel);
