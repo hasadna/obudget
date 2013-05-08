@@ -9,6 +9,7 @@ filenames = [ "financial_report/2000-2008/out.json",
               "2012_planned/out.json",
               "queries/out.json",
               "2012_used/out.json",
+	      "2013_2014/out.json",
               "title_cleaning.json"
               ]
 
@@ -36,7 +37,7 @@ for f in filenames:
         except Exception,e:
             print "error %s in line %r" % (e,line)
     
-for year in range(1992,2013):
+for year in range(1992,2015):
     totalkey = '%s|%8s' % (year,"00")
     if '%s|%10s' % (year,"00") in keys:
         continue
