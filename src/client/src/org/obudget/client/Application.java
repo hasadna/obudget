@@ -137,7 +137,11 @@ class Application implements ValueChangeHandler<String> {
 		mSummary3 = new HTML();
 		mSummary3_1 = new HTML();
 		
-		mBudgetNews = new BudgetNews();
+		try {
+			mBudgetNews = new BudgetNews();
+		} catch (Exception e) {
+			Log.error("Failed to init mBudgetNews",e);
+		}
 		
 		mCheatSheet = new HTML("(הסברים)");
 		final DecoratedPopupPanel simplePopup = new DecoratedPopupPanel(true);
@@ -216,7 +220,7 @@ class Application implements ValueChangeHandler<String> {
 
 				//mYearSelection.setSelectedIndex( mYear - 1992 );
 
-				mBudgetNews.update("\""+title+"\"");
+				if ( mBudgetNews != null ) mBudgetNews.update("\""+title+"\"");
 				
 				Window.setTitle("תקציב המדינה - "+title+" ("+mYear+")");
 				mSummary1.setText( title );
@@ -419,11 +423,11 @@ class Application implements ValueChangeHandler<String> {
 				mResultsGrid.setState( resultsGridNet );
 			} catch (Exception e){
 				Log.error("Application::onValueChange: Error while parsing url", e);
-				newCodeAndYear("00", 2010);
+				newCodeAndYear("00", 2012);
 			}
 		} else {
 			Log.error("Application::onValueChange: Error while parsing url");
-			newCodeAndYear("00", 2010);
+			newCodeAndYear("00", 2012);
 		}
 	}
 
