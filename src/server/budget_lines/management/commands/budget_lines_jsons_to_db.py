@@ -7,7 +7,7 @@ import json
 
 class Command(BaseCommand):
 
-    args = '[update] <jsons-file> <year1> <year2> ...'
+    args = '[update | force-update] <jsons-file> <year1> <year2> ...'
     help = 'Transfers a sorted jsons budget data files into the DB'
 
     def handle(self, *args, **options):
@@ -15,12 +15,16 @@ class Command(BaseCommand):
         print 'Loading raw rows'
         k = 0
         update = args[0] == 'update'
+        force_update = args[0] == 'force-update'
         if update:
             args = args[1:]
 
         filename = args[0]
         years = args[1:]
         years = [ int(y) for y in years ]
+
+        if force_update and len(years)>0:
+            BudgetLine.objects.filter(year__in=years).delete()
 
         print filename
         for l in file(filename).readlines():

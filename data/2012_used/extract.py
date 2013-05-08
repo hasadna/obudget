@@ -21,8 +21,13 @@ book=xlrd.open_workbook("execution2012.xlsx")
 sheet=book.sheet_by_index(0)
 for ridx in xrange(1,sheet.nrows):
 	row = sheet.row(ridx)
+#	code1 = None
 	for code_idx in range(1,8,2):
-		code = ("%%0%dd" % (code_idx+1)) % int(row[code_idx].value)
+		code = ("%%0%dd" % (code_idx+3)) % int(row[code_idx].value)
+#		if code_idx != 1: 
+#			code = code1+code
+#		else:
+#			code1 = code
 		x={}
 		x['code']=code
 		x['year']=2012
