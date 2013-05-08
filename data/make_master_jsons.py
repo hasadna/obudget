@@ -8,6 +8,7 @@ filenames = [ "financial_report/2000-2008/out.json",
               "2011_planned/out.json",
               "2012_planned/out.json",
               "queries/out.json",
+              "2012_used/out.json",
               "title_cleaning.json"
               ]
 
