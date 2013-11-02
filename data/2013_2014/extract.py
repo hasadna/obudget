@@ -1,4 +1,4 @@
-import xlrd
+import csv
 import json
 
 def get_from(x):
@@ -17,27 +17,28 @@ def sumdict(a,b):
 
 sums = {}
 
-book=xlrd.open_workbook("budget20132014.xlsx")
-sheet=book.sheet_by_index(0)
-for ridx in xrange(0,sheet.nrows):
-        print ridx
-	row = sheet.row(ridx)
-	for code_idx in [0,2,4]:
-                try:
-                        code = int(row[code_idx].value)
-                except:
-                        continue
-                code = str(code)
-                code = "0"*(4+code_idx-len(code)) +code
-                title = row[code_idx+1].value
-                for year,row_idx in [[2013,6],[2014,11]]:
-                        try:
-                                amount = int(row[row_idx].value)
-                        except:
-                                amount = 0
-                        key = "%s/%s" % (year,code)
-                        sums.setdefault(key,{'code':code,'year':year,'title':title,'net_allocated':0})
-                        sums[key]['net_allocated'] += amount
+budgets=csv.reader(file('budgets20132014.csv'))
+for row in budgets:
+    try:
+        year = int(row[0])
+    except:
+        continue
+    for col in [1,3,5,7]:
+        code = "00"+row[col].replace('-','')
+        title = row[col+1].decode('utf8')
+        try:
+            net_amount = int(row[11].replace(",",""))
+        except:
+            net_amount = 0
+        try:
+            gross_amount = net_amount + int(row[12].replace(",",""))
+        except:
+            gross_amount = net_amount
+        
+        key = "%s/%s" % (year,code)
+        sums.setdefault(key,{'code':code,'year':year,'title':title,'net_allocated':net_amount,'gross_allocated':gross_amount})
+        sums[key]['net_allocated'] += net_amount
+        sums[key]['gross_allocated'] += gross_amount
 
 out = file("out.json","w")
 keys = sums.keys()
