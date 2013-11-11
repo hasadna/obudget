@@ -36,7 +36,7 @@ for row in budgets:
             gross_amount = net_amount
         
         key = "%s/%s" % (year,code)
-        sums.setdefault(key,{'code':code,'year':year,'title':title,'net_allocated':net_amount,'gross_allocated':gross_amount})
+        sums.setdefault(key,{'code':code,'year':year,'title':title,'net_allocated':0,'gross_allocated':0})
         sums[key]['net_allocated'] += net_amount
         sums[key]['gross_allocated'] += gross_amount
 
