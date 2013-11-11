@@ -24,16 +24,23 @@ def sumdict(a,b):
 	ret.update(a)
 	return ret
 
-def to_code(t):
-    t = t.split('-')
-    t= [ "%02x" % int(x) for x in t ]
-    t = "00" + ''.join(t)
+def to_code(row,col):
+    t = row[col]
+    if '-' in t:
+        t = t.split('-')
+        assert(len(t)==(col+1)/2)
+        t= [ "%02d" % int(x) for x in t ]
+        t = "00" + ''.join(t)
+    else:
+        add = "0" * (col+3-len(t))
+        t=add+t
+    return t
 
-sums = {}
 
 out = file("new_csvs.json","w")
 filelist = ['new_2005_2008/execution20052008.csv','new_2009_2011/execution20092011.csv','new_2012/execution2012.csv','2013_2014/budgets20132014.csv']
 for filename in filelist:
+    sums = {}
     budgets=csv.reader(file(filename))
     for row in budgets:
         try:
@@ -41,7 +48,10 @@ for filename in filelist:
         except:
             continue
         for col in [1,3,5,7]:
-            code = to_code(row[col])
+            code = to_code(row,col)
+            if len(code) != col+3: 
+                print code, row
+                assert(False)
             title = row[col+1].decode('utf8')
             net_allocated = get_from(row,11)
             gross_allocated = net_allocated + get_from(row,12)
@@ -59,6 +69,8 @@ for filename in filelist:
             sums[key]['net_revised'] += net_revised
             sums[key]['gross_revised'] += gross_revised
             sums[key]['net_used'] += net_used
+            if code.startswith("00010201") and year==2011:
+                print code, sums[key]
 
     keys = sums.keys()
     keys.sort()
