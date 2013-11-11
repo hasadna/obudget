@@ -24,6 +24,11 @@ def sumdict(a,b):
 	ret.update(a)
 	return ret
 
+def to_code(t):
+    t = t.split('-')
+    t= [ "%02x" % int(x) for x in t ]
+    t = "00" + ''.join(t)
+
 sums = {}
 
 out = file("new_csvs.json","w")
@@ -36,7 +41,7 @@ for filename in filelist:
         except:
             continue
         for col in [1,3,5,7]:
-            code = "00"+row[col].replace('-','')
+            code = to_code(row[col])
             title = row[col+1].decode('utf8')
             net_allocated = get_from(row,11)
             gross_allocated = net_allocated + get_from(row,12)
