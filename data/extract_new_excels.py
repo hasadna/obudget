@@ -2,16 +2,16 @@ import csv
 import json
 import glob
 
-def get_from(row,index):
+def get_from(row,index,to_add=0):
     try:
         val = row[index]
         val = val.replace(",","")
         if "." in val:
-            return float(val)
+            return float(val)+to_add
         else:
-            return int(val)
+            return int(val)+to_add
     except:
-        return 0
+        return None
 
 def sumdict(a,b):
 	for k,v in b.iteritems():
@@ -36,6 +36,8 @@ def to_code(row,col):
         t=add+t
     return t
 
+def add_to_sums(sums,amount,field):
+    if amount is not None: sums[key][field] = sums[key].setdefault(field,0)+amount
 
 out = file("new_csvs.json","w")
 filelist = ['new_2005_2008/execution20052008.csv','new_2009_2011/execution20092011.csv','new_2012/execution2012.csv','2013_2014/budgets20132014.csv']
@@ -54,23 +56,18 @@ for filename in filelist:
                 assert(False)
             title = row[col+1].decode('utf8')
             net_allocated = get_from(row,11)
-            gross_allocated = net_allocated + get_from(row,12)
+            gross_allocated = get_from(row,12,net_allocated)
             net_revised = get_from(row,18)
-            gross_revised = net_revised + get_from(row,19)
+            gross_revised = get_from(row,19,net_revised)
             net_used = get_from(row,25)
         
             key = "%s/%s" % (year,code)
-            sums.setdefault(key,{'code':code,'year':year,'title':title,
-                                 'net_allocated':0,'gross_allocated':0,
-                                 'net_revised':0,'gross_revised':0,
-                                 'net_used':0 })
-            sums[key]['net_allocated'] += net_allocated
-            sums[key]['gross_allocated'] += gross_allocated
-            sums[key]['net_revised'] += net_revised
-            sums[key]['gross_revised'] += gross_revised
-            sums[key]['net_used'] += net_used
-            if code.startswith("00010201") and year==2011:
-                print code, sums[key]
+            sums.setdefault(key,{'code':code,'year':year,'title':title})
+            add_to_sums(sums,net_allocated,'net_allocated')
+            add_to_sums(sums,net_revised,'net_revised')
+            add_to_sums(sums,net_used,'net_used')
+            add_to_sums(sums,gross_allocated,'gross_allocated')
+            add_to_sums(sums,gross_revised,'gross_revised')
 
     keys = sums.keys()
     keys.sort()
