@@ -37,17 +37,17 @@ class BudgetAPICaller extends JsonpRequestBuilder {
 	
 	public BudgetAPICaller() {
 		url = new UrlBuilder();
-		url.setHost(Window.Location.getHost());
-		String port = Window.Location.getPort();
-		try {
-			url.setPort(Integer.parseInt( port ));
-		} catch (Exception e) {}
-		//url.setPort(33333);
-		url.setPath("00");
+		url.setHost("the.open-budget.org.il");
+//		String port = Window.Location.getPort();
+//		try {
+//			url.setPort(Integer.parseInt( port ));
+//		} catch (Exception e) {}
+		url.setPort(80);
+		url.setPath("gov/api/00");
 	}
 	
 	public void setCode( String code ) {
-		url.setPath(code);
+		url.setPath("gov/api/"+code);
 	}
 
 	public void setParameter( String key, String value ) {
