@@ -2,6 +2,8 @@
 Open Budget of the Israeli Gov
 ==============================
 
+## This is the OLD website. For current development endeavors you should go to http://github.com/OpenBudget/open-budget-frontend.git
+
 This projects makes it easy for citizens and their serveris to access the Israeli Budget. Based on files shared by the `Accountant General`_, the system currently holds data from 1992 to 2012. 
 
 .. _`Accountant General`: http://www.ag.mof.gov.il/AccountantGeneral/Templates/BudgetExecution/PublicationFiles.aspx?NRMODE=Published&NRNODEGUID=%7b67B554DC-C476-4966-82A4-836E1201DF2B%7d&NRORIGINALURL=%2fAccountantGeneral%2fBudgetExecution%2fBudgetExecutionTopNav%2fBEHistoryData%2f&NRCACHEHINT=Guest
