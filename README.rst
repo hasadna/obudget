@@ -2,7 +2,7 @@
 Open Budget of the Israeli Gov
 ==============================
 
-## This is the OLD website. For current development endeavors you should go to http://github.com/OpenBudget/open-budget-frontend.git
+## This is the OLD website. For current development endeavors you should go to http://github.com/OpenBudget/BudgetKey
 
 This projects makes it easy for citizens and their serveris to access the Israeli Budget. Based on files shared by the `Accountant General`_, the system currently holds data from 1992 to 2012. 
 
